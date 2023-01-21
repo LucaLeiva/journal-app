@@ -3,12 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    status: "not-authenticated", // "checking", "not-authenticated", "authenticated"
+    status: "checking", // "checking", "not-authenticated", "authenticated"
     uid: null,
     email: null,
     displayName: null,
     photoURL: null,
-    message: null
+    errorMessage: null
   },
   reducers: {
     login: (state, { payload }) => {
@@ -17,7 +17,7 @@ export const authSlice = createSlice({
       state.email = payload.email;
       state.displayName = payload.displayName;
       state.photoURL = payload.photoURL;
-      state.message = null;
+      state.errorMessage = null;
     },
     logout: (state, { payload }) => {
       state.status = "not-authenticated";
@@ -25,7 +25,7 @@ export const authSlice = createSlice({
       state.email = null;
       state.displayName = null;
       state.photoURL = null;
-      state.message = payload;
+      state.errorMessage = payload;
     },
     checkingCredentials: (state) => {
       state.status = "checking";
